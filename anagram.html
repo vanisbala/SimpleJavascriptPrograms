@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <title>Anagram</title>
+   
+  </head>
+  <body style="text-align:center; color:blue">
+    <h1>Anagram</h1>
+    <div>
+        <label for="string1">Enter the first string:</label>
+        <input type="text" name="string1" id="string1"></input>
+        <label for="string2">Enter the second string:</label>
+        <input type="text" name="string2" id="string2"></input>
+        <button onclick="" id="submitBtn">submit</button>
+    </div>
+    <h3 class="result "></h3>
+    
+    <script>
+      
+        const str1Element= document.querySelector('#string1');
+        const str2Element= document.querySelector('#string2');
+        const btnElement= document.querySelector('#submitBtn');
+        const resultElement= document.querySelector('.result');
+        const resultYesStr = `Yes - ${str1Element.value} & ${str2Element.value} - are anagrams` 
+        const resultNoStr = `No - ${str1Element.value} & ${str2Element.value} - are not anagrams` 
+
+        console.log(str1Element.value);
+
+        function fun1(){
+            console.log(str1Element.value);
+            
+            if(checkAnagram(str1Element.value,str2Element.value)) 
+            {
+                resultElement.innerHTML  = `Yes - ${str1Element.value} & ${str2Element.value} - are anagram` ;
+                resultElement.style.color = 'green';
+            } 
+            else{
+                resultElement.innerHTML =   `No - ${str1Element.value} & ${str2Element.value} - are not anagram`;
+                resultElement.style.color = 'red';
+            }
+        }
+
+        btnElement.addEventListener('click',fun1);
+       
+        function checkAnagram(str1,str2){
+            if(str1.length !== str2.length){
+                return false;
+            }
+            let counter = {};
+            for(let char of str1){
+                counter[char]= counter[char] ?  counter[char] + 1 : 1
+            }
+            for(let noOfChar of str2){
+                if(!counter[noOfChar]){
+                    return false
+                }
+                --counter[noOfChar];
+            }
+            return true;
+        }
+
+    </script>
+  </body>
+</html>

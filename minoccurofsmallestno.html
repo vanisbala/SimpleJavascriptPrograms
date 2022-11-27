@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrequencyOfSmallest</title>
+</head>
+
+<body style="text-align: center; color:green">
+    <h1>Frequency of smallest number</h1>
+    <div>
+        <label for="numarray">Enter the numbers separated by comma:</label>
+        <input type="text" name="numarray" id="numarray"></input>
+        <button type="submit" id="submit">Submit</button>
+    </div>
+    <h3 style="color:darkcyan" id="result"></h3>
+    <script>
+        const numArrayElement = document.querySelector("#numarray");
+        const submitBtnElement = document.querySelector("#submit");
+        const resultElement = document.querySelector("#result");
+        function frequencyofmin(arr) {
+            let min = arr[0]
+            let mincount = 0;
+            for (let i = 0; i <= arr.length - 1; i++) {
+                if (min === arr[i]) {
+                    ++mincount;
+                }
+                else if (min < arr[i]) {
+                    continue;   
+                }
+                else if (min > arr[i]) {
+                    min = arr[i];
+                    mincount = 1;
+                }
+                console.log(min, mincount);
+            }
+            console.log(min, mincount);
+            resultElement.innerHTML = `The minimum value ${min} occurs ${mincount} times in this array`
+        }
+        function fun1() {
+            let numArray = numArrayElement.value;
+            numArray = numArray.split(',');
+            numArray = numArray.map(num => parseInt(num));
+            frequencyofmin(numArray)
+        }
+        submitBtnElement.addEventListener('click', fun1)
+    </script>
+</body>
+
+</html>

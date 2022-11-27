@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <title>Palindrome</title>
+   
+  </head>
+  <body style="text-align:center; color:blue">
+    <h1 >Palindrome</h1>
+    <div>
+        <label for="input-string">Enter your input here: </label>
+        <input type="text" name="input-string" id="inputString"></input>
+        <button onclick="" id="submitBtn">submit</button>
+    </div>
+    <h3 class="result"></h3>
+    
+    <script>
+      
+        const strElement= document.querySelector('#inputString');
+        const btnElement= document.querySelector('#submitBtn');
+        const resultElement= document.querySelector('.result');
+       
+
+        function fun1(){
+            
+            if(palindrome(strElement.value)) {
+                resultElement.innerHTML  = `Yes - ${strElement.value} - is a palindrome`;
+                resultElement.style.color = 'green'
+            }
+            else{
+                resultElement.innerHTML = `No - ${strElement.value} - is not a palindrome`;
+                resultElement.style.color = 'red';
+
+            }
+        }
+
+        btnElement.addEventListener('click',fun1);
+       
+        function palindrome(str){
+            str = str.toLowerCase()
+            // \W detects all non alphanumeric characters in the string
+            str = str.replace( /\W/g,"")
+            console.log(str)
+            let len = str.length;
+            let chk = Math.floor(len/2)
+            console.log(chk);
+            for(let i=0; i<chk ; i++)
+            {
+                if(str[i]!==str[--len])
+                    return false;
+            }
+            return true;
+        }
+
+    </script>
+  </body>
+</html>
